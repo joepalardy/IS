@@ -1,0 +1,18 @@
+{
+    "contents" : "---\ntitle: \"IS\"\nauthor: \"Joe Palardy\"\ndate: \"September 2, 2015\"\noutput: html_document\nruntime: shiny\n---\n\n## Interactive IS-curve\n```{r, echo=FALSE}\nlibrary(ggplot2)\ninputPanel(\n\n  sliderInput(\"A\", label = \"Autonomous Investment\",\n              min = 10, max = 50, value = 30, step = 10), \n  sliderInput(\"a\", label = \"Slope of Investment Function\",\n              min = 1, max = 10, value = 5, step = 1),\n  sliderInput(\"c_0\", label = \"Autonomous Consumption\",\n              min = 50, max = 100, value = 80, step = 5),\n  sliderInput(\"c_y\", label = \"Marginal Propensity to Consume\",\n              min = 0, max = 1, value = .8, step = .1),\n  sliderInput(\"t_y\", label = \"Tax Rate\",\n              min = 0, max = 1, value = .1, step = .1),\n  sliderInput(\"g\", label = \"Government Purchases\",\n              min = 0, max = 100, value = 50, step = 10)\n)\n\n\nrenderPlot({\n  IS <- function(x)\n    {\n     mult <- 1/(1 - input$c_y*(1-input$t_y)) \n    \n    input$c_0*mult + (input$A - input$a*x)*mult + input$g*mult\n    }\n  \n  p <- ggplot(data.frame(x=c(0, 30)), aes(x)) + \n  stat_function(fun=IS, color = \"blue\") +ylim(200, 1000) + scale_x_continuous(name=\"r\") +coord_flip()\n\n  print(p)\n  \n#  curve(input$Auto_Inv - input$a * x, 1, 10, ylim = c(30,100))\n\n},height = 600, width = 1000)\n```\n\n",
+    "created" : 1441202182676.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "521220443",
+    "id" : "FA4C16EE",
+    "lastKnownWriteTime" : 1441305767,
+    "path" : "C:/Users/Joseph/Dropbox/Macro Theory DE/IS/IS_equation.Rmd",
+    "project_path" : "IS_equation.Rmd",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}
