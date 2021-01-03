@@ -42,6 +42,6 @@ renderPlot({
   
 #  curve(input$Auto_Inv - input$a * x, 1, 10, ylim = c(30,100))
 
-},height = 1000, width = 1000)
+},height = 1200, width = 1000)
 ```
 
